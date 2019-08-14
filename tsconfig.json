@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5", // versao do js que sera compilado o TS
+        "module": "commonjs",
+        "outDir": "build", // Onde esta o codigo final gerado/compilado
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "server/**/*.ts", //Arquivos que o servidor ira interpretar
+        "server/*.ts*/"
+    ],
+    "exclude": [ // Arquivos a serem ignorados
+        "node_modules"
+    ],
+    "compilerOnSave": true, // Toda vez que alterar um arquivo, sera salvo e buildado altomaticamente
+    "buildOnSave": true
+}

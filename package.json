@@ -1,0 +1,39 @@
+{
+	"name": "node_typescript",
+	"version": "1.0.0",
+	"description": "API desenvolvida utilizando TS,NODE,Postgres e Seuqelize",
+	"main": "server/serve.ts",
+	"scripts": {
+		"start": "./node_modules/.bin/ts-node ./server/server.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Buildeveloper/Node_typescript.git"
+	},
+	"keywords": [
+		"API",
+		"TS",
+		"NODE",
+		"ES6"
+	],
+	"author": "Paulo",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Buildeveloper/Node_typescript/issues"
+	},
+	"homepage": "https://github.com/Buildeveloper/Node_typescript#readme",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"http": "0.0.0",
+		"morgan": "^1.9.1",
+		"pg": "^7.12.1"
+	},
+	"devDependencies": {
+		"@types/body-parser": "^1.17.0",
+		"@types/express": "^4.17.0",
+		"@types/morgan": "^1.7.36",
+		"ts-node": "^8.3.0"
+	}
+}
