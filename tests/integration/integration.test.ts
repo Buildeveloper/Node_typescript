@@ -1,6 +1,31 @@
 import { app, request, expect } from './config/helpers';
 
 describe('Testes de Integraçcão', () => {
+    describe('GET /', () => {
+        it('Deve retornar a mensagem Hello, world', done => {
+            request(app)
+                .get('/')
+                .end((error ,res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.text).to.be.eql('Hello, world!');
+                    done(error);
+                });
+        });
+    });
+
+    describe('GET /ola/:nome', () => {
+        it('Deve retornar a mensagm Hello, TypeScript', done => {
+            const nome = 'TypeScript';
+            request(app)
+                .get(`/ola/${nome}`)
+                .end((error, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.text).to.be.eql('Hello, TypeScript');
+                    done(error);
+                });
+        });
+    })
+
     describe('GET /api/users/all', () => {
         it('Deve retornar um JSON com todos os Usuário', done => {
             // Instancia o APP para subir a aplicação (rotas)
