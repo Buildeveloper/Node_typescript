@@ -1,7 +1,7 @@
 import { IUser, IUserDetail, createUser, createUsers, createUserById, createUserByEmail } from './interface';
 import * as Bluebird from 'bluebird';
 
-const  model = require('../../models');
+const model = require('../../models');
 
 class User implements IUser {
     public id: number;
@@ -12,14 +12,14 @@ class User implements IUser {
     constructor() {}
 
     create(user: any) {
-        return model.User.create(user);
+        return model.User.create(user)
     }
 
     getAlll(): Bluebird<IUser[]> {
         return model.User.findAll({
             order: ['name']
         })
-        .then(createUsers);
+        .then(createUsers)
     }
 
     getById(id: number): Bluebird<IUserDetail> {
