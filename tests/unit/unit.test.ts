@@ -37,7 +37,7 @@ describe('Teste unitários do Service', () => {
     describe('Método GET Users', () => {
         it('Deve retornar um lista com todos usuários', () => {
             const user = new User();
-            return user.getAlll().then(data => {
+            return user.getAll().then(data => {
                 expect(data).to.be.an('array');
                 expect(data[0]).to.have.all.keys(
                     ['email', 'id', 'name', 'password']

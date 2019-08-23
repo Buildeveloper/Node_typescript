@@ -102,9 +102,6 @@ describe('Testes de Integraçcão', () => {
                 .send(user)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
-                    expect(res.body.payload).to.have.all.keys([
-                        'id'
-                    ]);
                     done(error);
                 });
         });
@@ -116,9 +113,6 @@ describe('Testes de Integraçcão', () => {
                 .delete(`/api/users/${userTest.id}/destroy`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
-                    expect(res.body.payload).to.have.all.keys([
-                        'id'
-                    ]);
                     done(error);
                 });
         });
