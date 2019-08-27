@@ -1,3 +1,4 @@
+import * as jwt from 'jwt-simple';
 import { app, request, expect } from './config/helpers';
 import * as HTTPStatus from 'http-status';
 
@@ -5,10 +6,11 @@ describe('Testes de Integraçcão', () => {
 
     'use strict';
 
-    const config = require('../../server/config/env/config')();
+    const config = require('../../server/config/env/config');
     const model = require('../../server/models');
 
     let id;
+    let token;
 
     const userTest = {
         id: 100,
@@ -19,9 +21,9 @@ describe('Testes de Integraçcão', () => {
 
     const userDefualt = {
         id: 1,
-        name: 'Defalt User',
-        email: 'defalt@email.com',
-        password: 'defalt'
+        name: 'Paulo',
+        email: 'paulo@email.com',
+        password: '123'
     };
 
     beforeEach((done) => {
@@ -29,11 +31,13 @@ describe('Testes de Integraçcão', () => {
             where: {}
         })
         .then(() => {
+            done();
             return model.User.create(userDefualt);
         })
         .then(user => {
             model.User.create(userTest)
                 .then(() => {
+                    token = jwt.encode({id: user.id}, config.secret);
                     done();
                 });
         });

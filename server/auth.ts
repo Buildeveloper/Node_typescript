@@ -9,15 +9,15 @@ export default function AuthConfig() {
     const UserService = new User();
     let opts = {
         secretOrKey: config.secret,
-        jwtFromRequest: ExtractJwt.fromAuthHeader()
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     };
 
-    passport.use(new Strategy(opts, (jtwPayload, done) => {
+    passport.use(new Strategy(opts, (jwtPayload, done) => {
         UserService
-            .getById(jtwPayload.id)
+            .getById(jwtPayload.id)
             .then(user => {
                 if (user) {
-                    return done(null , {
+                    return done(null, {
                         id: user.id,
                         email: user.email
                     });

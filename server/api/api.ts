@@ -4,6 +4,7 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import Routes from './routes/routes';
 import { errorHandlerApi } from './errorHandlerApi';
+import AuthConfig from '../auth';
 
 class Api {
     public express: Application;
@@ -11,7 +12,7 @@ class Api {
 
     constructor() {
         this.express = express();
-        // Inicia middleware
+        this.auth = AuthConfig();
         this.middleware();
     }
 
@@ -19,10 +20,9 @@ class Api {
         this.express.use(morgan('dev'));
         this.express.use(bodyParser({ extended: true }));
         this.express.use(bodyParser.json());
-        // Iniciando errorHanlder no express
         this.express.use(errorHandlerApi);
-        // Inicia rotas
-        this.router(this.express, this.express);
+        this.express.use(this.auth.initialize());
+        this.router(this.express, this.auth);
     }
 
     private router(app: Application, auth: any): void {

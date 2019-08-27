@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jwt-simple';
 import * as HttpStatus from 'http-status';
 
-const config = require('./config/env/config')();
+const config = require('../../config/env/config')();
 
 export default function authSuccess(res: Response, credentials: any, data: any) {
     const isMatch = (credentials.password == data.password);
