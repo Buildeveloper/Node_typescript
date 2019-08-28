@@ -6,11 +6,11 @@ describe('Testes de Integraçcão', () => {
 
     'use strict';
 
-    const config = require('../../server/config/env/config');
+    const config = require('../../server/config/env/config')();
     const model = require('../../server/models');
 
-    let id;
     let token;
+    let id;
 
     const userTest = {
         id: 100,
@@ -20,34 +20,66 @@ describe('Testes de Integraçcão', () => {
     };
 
     const userDefualt = {
-        id: 1,
+        id: 2,
         name: 'Paulo',
         email: 'paulo@email.com',
         password: '123'
     };
 
     beforeEach((done) => {
-        model.User.destroy({
-            where: {}
-        })
-        .then(() => {
-            done();
-            return model.User.create(userDefualt);
-        })
-        .then(user => {
-            model.User.create(userTest)
-                .then(() => {
-                    token = jwt.encode({id: user.id}, config.secret);
-                    done();
+        model.User.destroy({where: {}})
+            .then(() => {
+                return model.User.create(userDefualt);
+            })
+            .then(user => {
+                model.User.create(userTest)
+                    .then(() => {                        
+                        token = jwt.encode({id: user.id}, config.secret);
+                        done();
+                    });
+            });
+    });
+
+    describe('POST /token', () => {
+        it('Deve receber um JWT', done => {
+            const credentials = {
+                email: userDefualt.email,
+                password: userDefualt.password
+            };
+
+            request(app)
+                .post('/token')
+                .send(credentials)
+                .end((error, res) => {
+                    expect(res.status).to.equal(HTTPStatus.OK)
+                    expect(res.body.token).to.equal(`${token}`)
+                    done(error);
                 });
+        });
+
+        it('Não deve gerar Token', done => {
+            const credentials = {
+                email: 'email@qualquer.com',
+                password: 'qualquer123'
+            };
+
+            request(app)
+                .post('/token')
+                .send(credentials)
+                .end((error, res) => {
+                    expect(res.status).to.equal(HTTPStatus.UNAUTHORIZED)
+                    expect(res.body).to.empty
+                    done(error);
+            });
         });
     });
 
     describe('GET /api/users/all', () => {
         it('Deve retornar um Array com todos os Usuário', done => {
-            // Instancia o APP para subir a aplicação (rotas)
             request(app)
                 .get('/api/users/all')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.body.payload).to.be.an('array');
@@ -62,6 +94,8 @@ describe('Testes de Integraçcão', () => {
         it('Deve retonar JSON com apenas o Usuário', done => {
             request(app)
                 .get(`/api/users/${userDefualt.id}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.body.payload.id).to.equal(userDefualt.id);
@@ -77,13 +111,15 @@ describe('Testes de Integraçcão', () => {
     describe('POST /api/users/create', () => {
         it('Deve criar Usuário', done => {
             const user = { 
-                id: 2,
+                id: 9,
                 name: 'Usuario Teste' ,
                 email: 'usuario@email.com',
                 password: 'novouser'
             };
             request(app)
                 .post('/api/users/create')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
                 .send(user)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
@@ -103,6 +139,8 @@ describe('Testes de Integraçcão', () => {
             };
             request(app)
                 .put(`/api/users/${id}/update`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
                 .send(user)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
@@ -114,7 +152,9 @@ describe('Testes de Integraçcão', () => {
     describe('DELETE /api/users/:id/destroy', () => {
         it('Deve deletar Usuário', done => {
             request(app)
-                .delete(`/api/users/${userTest.id}/destroy`)
+                .del(`/api/users/${userTest.id}/destroy`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
