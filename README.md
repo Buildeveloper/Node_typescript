@@ -1,6 +1,6 @@
-# Node + Typescript
+# API Node + Typescript
 
-Projeto para fim educacional, abordando os seguintes temas:
+Tecnologias utilizadas:
 
 - TypeScript
 - ES6
