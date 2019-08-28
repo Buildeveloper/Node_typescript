@@ -11,7 +11,7 @@ Tecnologias utilizadas:
 - Autenticação via JWT (JSON Web Token)
 - npm
 - Testes unitários/cobertura
-- Code Coverage com nyc
+- Code Coverage com nyc/stanbul
 - Orientação a Objetos
 - Programação funcional
 - Automatização de Tarefas usando Gulp

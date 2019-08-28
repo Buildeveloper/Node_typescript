@@ -1,18 +1,38 @@
 import { testDouble, expect } from './config/helpers';
 import User from '../../server/modules/User/service';
-const id = 11;
+
+const model = require('../../server/models');
 
 describe('Teste unitários do Service', () => {
+
+    const defaultUser = {
+        id: 1,
+        name: 'Default User',
+        email: 'defaultuser@email.com',
+        password: '1234'
+    }
+
+    beforeEach((done) => {
+        model.User.destroy({
+            where: {}
+        })
+        .then(() =>{
+            model.User.create(defaultUser).then(() => {
+                console.log('Default user created');
+                done();
+            });
+        });
+    });
+
     describe('Método Create', () => {
         it('Deve criar um novo Usuário', () => {
             const novoUsuario = {
-                id: id,
+                id: 2,
                 name: 'Novo Usuario',
                 email: 'novousuario@email.com',
                 password: '1234'
             };
-            const user = new User();
-            return user.create(novoUsuario)
+            return User.create(novoUsuario)
                 .then(data => {
                     expect(data.dataValues).to.have.all.keys(
                         ['email', 'id', 'name', 'password', 'updatedAt', 'createdAt']
@@ -27,8 +47,7 @@ describe('Teste unitários do Service', () => {
                 name: 'Nome Atualizado',
                 email: 'atualizado@email.com'
             };
-            const user = new User();
-            return user.update(id, usuarioAtualizado).then(data => {
+            return User.update(defaultUser.id, usuarioAtualizado).then(data => {
                 expect(data[0]).to.be.equal(1);
             });
         });
@@ -36,21 +55,15 @@ describe('Teste unitários do Service', () => {
 
     describe('Método GET Users', () => {
         it('Deve retornar um lista com todos usuários', () => {
-            const user = new User();
-            return user.getAll().then(data => {
+            return User.getAll().then(data => {
                 expect(data).to.be.an('array');
-                expect(data[0]).to.have.all.keys(
-                    ['email', 'id', 'name', 'password']
-                )
             });
         });
     });
 
      describe('Método getById', () => {
         it('Retornar um usuário de acordo com o ID passado', () => {
-            const id = 2;
-            const user = new User();
-            return user.getById(id).then(data => {
+            return User.getById(defaultUser.id).then(data => {
                 expect(data).to.have.all.keys(
                     ['email', 'id', 'name', 'password']
                 );
@@ -60,9 +73,7 @@ describe('Teste unitários do Service', () => {
 
     describe('Método getByEmail', () => {
         it('Retornar um usuário de acordo com o email passado', () => {
-            const email = 'paulo@email.com';
-            const user = new User();
-            return user.getByEmail(email).then(data => {
+            return User.getByEmail(defaultUser.email).then(data => {
                 expect(data).to.have.all.keys(
                     ['email', 'id', 'name', 'password']
                 );
@@ -72,8 +83,7 @@ describe('Teste unitários do Service', () => {
 
     describe('Método DELETE', () => {
         it('Deve deletar usuário', () => {
-            const user = new User();
-            return user.delete(id).then(data => {
+            return User.delete(defaultUser.id).then(data => {
                 expect(data).to.be.equal(1);
             });
         });
