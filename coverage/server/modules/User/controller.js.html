@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/24</span>
+        <span class='fraction'>15/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>2/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/24</span>
+        <span class='fraction'>15/24</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,36 +107,36 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,37 +155,37 @@ var UserController = /** @class */ (function () {
     function UserController() {
         this.userService = new service_1.default();
     }
-    UserController.prototype.getAll = function (req, res) {
-        this.userService
+    UserController.prototype.getAll = <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+<span class="cstat-no" title="statement not covered" >        this.userService</span>
             .getAll()
             .then(_.partial(successHandler_1.onSuccess, res))
             .catch(_.partial(errorHandler_1.onError, res, "Erro ao buscar os usuarios"));
     };
-    UserController.prototype.createUser = function (req, res) {
-        this.userService
+    UserController.prototype.createUser = <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+<span class="cstat-no" title="statement not covered" >        this.userService</span>
             .create(req.body)
             .then(_.partial(successHandler_1.onSuccess, res))
             .catch(_.partial(dbErrorHandler_1.dbErrorHandler, res))
             .catch(_.partial(errorHandler_1.onError, res, 'Erro ao inserir um novo usuário'));
     };
-    UserController.prototype.getById = function (req, res) {
-        var userId = parseInt(req.params.id);
-        this.userService
+    UserController.prototype.getById = <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+        var userId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >        this.userService</span>
             .getById(userId)
             .then(_.partial(successHandler_1.onSuccess, res))
             .catch(_.partial(errorHandler_1.onError, res, "Usu\u00E1rio n\u00E3o encontrado"));
     };
-    UserController.prototype.updateUser = function (req, res) {
-        var userId = parseInt(req.params.id);
-        var props = req.body;
-        this.userService
+    UserController.prototype.updateUser = <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+        var userId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id);</span>
+        var props = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >        this.userService</span>
             .update(userId, props)
             .then(_.partial(successHandler_1.onSuccess, res))
             .catch(_.partial(errorHandler_1.onError, res, "Falha ao atualizar usu\u00E1rio"));
     };
-    UserController.prototype.deleteUser = function (req, res) {
-        var userId = parseInt(req.params.id);
-        this.userService
+    UserController.prototype.deleteUser = <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+        var userId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >        this.userService</span>
             .delete(userId)
             .then(_.partial(successHandler_1.onSuccess, res))
             .catch(_.partial(errorHandler_1.onError, res, "Erro ao excluir usuarios"));
@@ -199,7 +199,7 @@ exports.default = UserController;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 28 2019 00:22:40 GMT-0300 (Brasilia Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 28 2019 00:30:18 GMT-0300 (Brasilia Standard Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

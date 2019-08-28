@@ -60,7 +60,7 @@ describe('Teste unitários do Service', () => {
 
     describe('Método getByEmail', () => {
         it('Retornar um usuário de acordo com o email passado', () => {
-            const email = 'novousuario@email.com';
+            const email = 'paulo@email.com';
             const user = new User();
             return user.getByEmail(email).then(data => {
                 expect(data).to.have.all.keys(
