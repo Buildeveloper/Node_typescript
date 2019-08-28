@@ -10,4 +10,4 @@ gulp.task('compile', function() {
                     .js.pipe(gulp.dest('dist'))
 });
 
-// gulp.task('default', ['compile']);
+gulp.task('default', ['compile']);
