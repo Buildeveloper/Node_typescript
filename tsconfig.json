@@ -3,6 +3,8 @@
         "target": "es5", // versao do js que sera compilado o TS
         "module": "commonjs",
         "outDir": "dist", // Onde esta o codigo final gerado/compilado
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "typeRoots": [
             "../node_modules/@types"
         ],
@@ -12,8 +14,7 @@
     },
     "include": [
         "server/**/*.ts", //Arquivos que o servidor ira interpretar
-        "tests/**/*.ts", //Arquivos que o servidor ira interpretar
-        "server/*.ts*/",
+        "server/*.ts",
         "tests/**/*.ts"
     ],
     "exclude": [ // Arquivos a serem ignorados
