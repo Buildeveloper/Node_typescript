@@ -15,5 +15,5 @@ Tecnologias utilizadas:
 - Orientação a Objetos
 - Programação funcional
 - Automatização de Tarefas usando Gulp
-- Integração Contínua
+- Integração Contínua (Travis CI)
 - Entre outras coizinhas top demais :) ..
