@@ -2,6 +2,8 @@
 
 Tecnologias utilizadas:
 
+[![Build Status](https://travis-ci.org/Buildeveloper/API-Node-Typescript.svg?branch=master)](https://travis-ci.org/Buildeveloper/API-Node-Typescript)
+
 - TypeScript
 - ES6
 - Programação Assíncrona
