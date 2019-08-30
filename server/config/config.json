@@ -1,6 +1,6 @@
 {
     "test": {
-        "username": "Henrique",
+        "username": "postgres",
         "password": "root",
         "database": "ts_api_test",
         "host": "localhost",
