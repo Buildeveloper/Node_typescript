@@ -6,6 +6,7 @@ var basename = path.basename(__filename);
 var config = require('../config/env/config')();
 var env = config.env || 'development';
 var db = {};
+var modelRelations = require('./relations/relations');
 if (config.dbUrl) {
     var sequelize = new Sequelize(config.dbUrl);
 }
@@ -28,4 +29,5 @@ Object.keys(db).forEach(function (modelName) {
 });
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+modelRelations(db);
 module.exports = db;
