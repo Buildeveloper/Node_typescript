@@ -41,7 +41,7 @@
 		"lodash": "^4.17.15",
 		"morgan": "^1.9.1",
 		"passport": "^0.4.0",
-		"passport-jwt": "^4.0.0",
+		"passport-jwt": "^4.0.1",
 		"pg": "^7.12.1",
 		"sequelize-cli": "^5.5.0",
 		"typescript": "^3.5.3"
